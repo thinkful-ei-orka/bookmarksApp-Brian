@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\waitstaffCalcBrian-Virel"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "bookmarksSolo"
+	}
+}
