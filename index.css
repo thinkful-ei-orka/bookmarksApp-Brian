@@ -1,0 +1,76 @@
+/*
+Intial view settings
+*/
+.new-filter{
+    display: flex;
+}
+
+.filterBy{
+    margin-left: auto;
+}
+
+h1 {
+    font-size: 190%;
+    text-align: center;
+}
+
+.btn {
+
+    text-align: center;
+    font-size: 135%;
+}
+
+li{
+    display: flex;
+    list-style: none;
+    padding-left: 10px;
+    border: 1px solid black;
+}
+
+.link{
+    display: flex;
+    
+}
+.star-group{
+    margin-left: auto;
+}
+/*
+Intial view settings
+Expanded view settings
+*/
+
+.sec-title{
+    display: flex;
+    border: 1px solid black;
+    padding-left: 15px;
+    /*padding-top: 15px;*/
+}
+.img-trash{
+    margin-top: 10px;
+    height: 25px;
+    margin-left: auto;
+}
+/*
+Expanded view settings
+*/
+#addNewBookmark{
+    width: 95%;
+}
+.cancel-create{
+    width: 95%;
+    display: flex;
+}
+.create{
+    margin-left: auto;
+}
+
+textarea{
+    width: 95%;
+}
+
+.error-section{
+    background-color: rgb(255, 255, 0);
+    border: 1px solid black;
+    text-align: center;
+    color: red;
+}

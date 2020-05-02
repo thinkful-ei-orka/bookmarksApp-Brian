@@ -3,26 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
     <section class="outside">
-        <h1>My Bookmarks</h1>
-        <button class='newBookmark'>New<img src='/bookmark-512.png' alt='bookmark logo'></button>
-        
-          <select name="filterBy" id="filter">
-            <option value="Filter By">Filter By</option>
-            <option value="1 *">1 *</option>
-            <option value="2 *">2 *</option>
-            <option value="3 *">3 *</option>
-            <option value="4 *">4 *</option>
-            <option value="5 *">5 *</option>
-          </select>
-          <section class="filterBy"></section>
-        </section>
+        <h1 class="centerThis">My Bookmarks</h1>
+        <main>
+            <form action="submit" id='form-add-new-bookmark'>
+                <label for="addNewBookmark">Add New Bookmark:</label>
+                <input type="text" id='addNewBookmark'> <br>
+                <span>Select a rating:</span><br>
+                <span><img src='./images/star1.jpg' class='star-group-choice' alt="star with a 1 inside">
+                    <img src='./images/star2.jpg' class='star-group-choice' alt="star with a 2 inside">
+                    <img src='./images/star3.jpg' class='star-group-choice' alt="star with a 3 inside">
+                    <img src='./images/star4.jpg' class='star-group-choice' alt="star with a 4 inside">
+                    <img src='./images/star5.jpg' class='star-group-choice' alt="star with a 5 inside"></span>
+                <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
+                <section class="buttons cancel-create centerThis">
+                    <button disabled class='cancel btn centerThis'>Cancel </button>
+                    <button disabled type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>
+                </section> 
+                <br>
+                <section class="error-section">
+                    <h2>Link is not valid</h2>
+                </section>
+            </form>
+            <!--<section class="buttons new-filter centerThis">
+            <button class='newBookmark btn centerThis'>New <img src='./images/bookmark-512.png' alt='bookmark logo'></button>
+            <button class='filterBy btn centerThis'>Filter By <img src='./images/arrow_drop_down.png' alt='dropdown logo'></button>
+        </section> 
+        <br>
         <section class="bookmarks">
+                <div class="expanded">
+                    <section class="sec-title">
+                        <p>Title 1 </p>
+                        <img src='./trash-can-icon-gray-trash-bin.jpg' class="img-trash" alt="trashcan">
+                    </section>
+                    <section class="link">
+                        <a class='visitSite' href="http://www.title1.com">Visit Site</a>
+                        <img src='./star3.jpg' class='star-group' alt="star with a 3 inside">
+                    </section>
+                    <section class="description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem a vitae ipsa delectus officiis cupiditate fuga ratione similique soluta amet debitis alias, nulla sequi expedita laborum maxime excepturi deleniti recusandae!</p>
+                    </section>
 
-        </section>
+                </div>
+            <li class="1">Title 1 <span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li> 
+                <li class="2">Title 2 <span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>
+            
+        </section>-->
+    </main>
     </section>
 </body>
 </html>
