@@ -5,4 +5,4 @@ function render(str){
     $('main').html(str)
 }
 //store.tryme();
-render (html.initialView());
+render (html.expandedView());
