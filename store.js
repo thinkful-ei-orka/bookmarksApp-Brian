@@ -3,10 +3,10 @@ const store = {
         {
             id: 'x56w',
             title: 'Title 1',
-            rating: 3,
+            rating: 4,
             url: 'http://www.title1.com',
             description: 'lorem ipsum dolor sit',
-            expanded: true
+            expanded: false
         },
         {
             id: '6ffw',
@@ -23,6 +23,6 @@ const store = {
 };
 
 
-export default {
-    store
-};
+  
+export default store;
+// export default store;
