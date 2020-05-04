@@ -7,13 +7,23 @@ import store from './store.js'
 function initialView(){
    return `<section class="buttons new-filter centerThis">
         <button class='newBookmark btn centerThis'>New <img src='./images/bookmark-512.png' alt='bookmark logo'></button>
-        <button class='filterBy btn centerThis'>Filter By <img src='./images/arrow_drop_down.png' alt='dropdown logo'></button>
+        <label for='rating' class='filterBy' id='lbl-rating'>
+            <select id='rating'>
+                <option value=0>Filter By
+                <option value=1>&#9733</option>
+                <option value=2>&#9733&#9733</option>
+                <option value=3>&#9733&#9733&#9733</option>
+                <option value=4>&#9733&#9733&#9733&#9733</option>
+                <option value=5>&#9733&#9733&#9733&#9733&#9733</option>
+            </select>
+        </label>
     </section> 
     <br>
     <section class="bookmarks">
         ${listString()}           
     </section>`
-}
+ };
+//<button class='filterBy btn centerThis'>Filter By <img src='./images/arrow_drop_down.png' alt='dropdown logo'></button>
 // ${store.bookmarks[0].title}
 // ${store.bookmarks[1].title}
 
@@ -78,15 +88,15 @@ function errorView(){
 function ratingString(rating){
      switch (rating) {
         case 1 :
-            return '<span class="star-group"><span class="fa fa-star"></span></span></li>'
+            return '<span class="star-group"><span class="fa fa-star"></span></span>'
         case 2 :
-            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>'
+            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span></span>'
         case 3 :
-            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>'
+            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span>'
         case 4 :
-            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>'
+            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span>'
         case 5 :
-            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>'
+            return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span>'
     }
 }
 
@@ -94,7 +104,7 @@ function selectRating(){
     let selectRatingString = ''
     for (let i=1; i<6; i++){
         selectRatingString = selectRatingString + 
-        `<img src='./images/star${i}.jpg' class='star-rating-choice' alt="star with a ${i} inside" value="${i}">`;        
+        `<img src='./images/star${i}.jpg' id='star-rating-${i}' class='star-rating-choice' alt="star with a ${i} inside" data-value="${i}">`;        
     }
 
     return selectRatingString;
@@ -117,7 +127,7 @@ function listString(){
             <p>${store.bookmarks[i].description}!</p>
         </section>`
         } else {
-        returnString = returnString + `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} ${ratingString(store.bookmarks[i].rating)}`
+        returnString = returnString + `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} ${ratingString(store.bookmarks[i].rating)}</li>`
     }
 };
     

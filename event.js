@@ -20,7 +20,12 @@ $('.js-bookmark-app').on('click', '.newBookmark', event => {
 function handleFilterByClick () {
 // filter click
 $('.js-bookmark-app').on('click', '.filterBy', event => {
-    console.log('FilterBy click');
+    // console.log('FilterBy click');
+    let crntRating = $('#lbl-rating').value();
+    let crntClass = $(event.currentTarget).attr('value');
+ console.log(crntRating);
+console.log(crntClass);
+
 })
 };
 
@@ -84,17 +89,28 @@ $('.js-bookmark-app').on('click', '.error-section', event => {
 function handleSelectRatingClick(){
 
     $('.js-bookmark-app').on('click', '.star-rating-choice', event => {
-        // get the index of the item in store.items
-        // const id = $(this).attr("value");
-        let id = ''
-        id = event.currentTarget;
-        // let newRating = id.slice(id.length - 1, 1);
-        console.log(id);
-        
-        
+                
+        let crntRating = $(event.currentTarget).data("value");
+        let crntClass = $(event.currentTarget).attr('class');
+        store.currentRating = crntRating;
+
+        $('.star-rating-choice-selected').attr('class','star-rating-choice');
+        $(event.currentTarget).attr('class', 'star-rating-choice-selected');
+       
     });
 }
 
+function clearSelectedClick (){
+    $('.js-bookmark-app').on('click', '.star-rating-choice-selected', event => {
+                
+        // let crntRating = $(event.currentTarget).data("value");
+        let crntClass = $(event.currentTarget).attr('class');
+        store.currentRating = 0;
+
+        $(event.currentTarget).attr('class', 'star-rating-choice')
+       
+    });
+}
 
 export default {
     handleNewBookmarkClick,
@@ -104,5 +120,6 @@ export default {
     handleCreateClick,
     handleErrorboxClick,
     handleSecTitleClick,
-    handleSelectRatingClick
+    handleSelectRatingClick,
+    clearSelectedClick
 };

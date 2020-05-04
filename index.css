@@ -7,6 +7,13 @@ Intial view settings
 
 .filterBy{
     margin-left: auto;
+    
+}
+
+#rating{
+    background-color: rgb(236, 235, 235);
+    height: 40px;
+    font-size: 22px;
 }
 
 h1 {
@@ -73,4 +80,8 @@ textarea{
     border: 1px solid black;
     text-align: center;
     color: red;
+}
+
+.star-rating-choice-selected{
+    border: 1px solid black;
 }

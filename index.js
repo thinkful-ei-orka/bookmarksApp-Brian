@@ -36,6 +36,7 @@ function main(){
     event.handleErrorboxClick ();
     event.handleSecTitleClick();
     event.handleSelectRatingClick();
+    event.clearSelectedClick();
     render (html.initialView());
        
 })}
