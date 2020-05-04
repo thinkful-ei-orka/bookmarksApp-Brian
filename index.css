@@ -9,8 +9,10 @@ Intial view settings
     margin-left: auto;
     
 }
+#rating option {direction: rtl;}
 
-#rating{
+#rating {
+
     background-color: rgb(236, 235, 235);
     height: 40px;
     font-size: 22px;
@@ -60,9 +62,14 @@ Expanded view settings
 /*
 Expanded view settings
 */
-#addNewBookmark{
+#addNewBookmarkTitle{
     width: 95%;
 }
+
+#addNewBookmarkUrl{
+    width: 95%;
+}
+
 .cancel-create{
     width: 95%;
     display: flex;

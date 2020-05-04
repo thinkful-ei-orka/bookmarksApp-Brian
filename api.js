@@ -14,16 +14,18 @@ function createItem(title, url, desc, rating) {
         desc,
         rating 
     };
-    
+    console.log(rating);
+    console.log(typeof rating);
     return fetch((BASE_URL), {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json; charset=utf-8'
         },
         body: JSON.stringify(newItem)
     })
     .catch(error => alert('Something went wrong. Try again later.')
     );
+    
 }
 
 // function updateItem(id, updateData){

@@ -9,7 +9,7 @@ function initialView(){
         <button class='newBookmark btn centerThis'>New <img src='./images/bookmark-512.png' alt='bookmark logo'></button>
         <label for='rating' class='filterBy' id='lbl-rating'>
             <select id='rating'>
-                <option value=0>Filter By
+                <option value=6>Filter By
                 <option value=1>&#9733</option>
                 <option value=2>&#9733&#9733</option>
                 <option value=3>&#9733&#9733&#9733</option>
@@ -55,8 +55,10 @@ function initialView(){
 
 function addBookmarkView(){
     return `<form action="submit" id='form-add-new-bookmark'>   
-        <label for="addNewBookmark">Add New Bookmark:</label>
-        <input type="text" id='addNewBookmark' placeholder='Enter a valid URL'> <br>
+        <label for="addNewBookmarkTitle">Add a Title for your New Bookmark:</label>
+        <input type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required> <br>
+        <label for="addNewBookmarkUrl">Add a URL for your New Bookmark:</label>
+        <input type="url" id='addNewBookmarkUrl' placeholder='Enter a valid URL' required> <br>
         <span>Select a rating:</span><br>
         <span>${selectRating()}</span>
         <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
@@ -112,12 +114,14 @@ function selectRating(){
 
 function listString(){
     let returnString = '';
+    let ratingFilter = store.filter;
+
     for (let i = 0; i < store.bookmarks.length; i++){
         if (store.bookmarks[i].expanded === true) {
             returnString = returnString + `<div class="expanded">
             <section class="sec-title">
                 <p>${store.bookmarks[i].title}</p>
-                <img src='./images/trash-can-icon-gray-trash-bin.jpg' class="img-trash" alt="trashcan">
+                <img src='./images/trash-can-icon-gray-trash-bin.jpg' id="${store.bookmarks[i].id}" class="img-trash" alt="trashcan">
             </section>
         <section class="link">
             <a class='visitSite' href="${store.bookmarks[i].url}">Visit Site ${store.bookmarks[i].url}</a>
@@ -127,7 +131,14 @@ function listString(){
             <p>${store.bookmarks[i].description}!</p>
         </section>`
         } else {
-        returnString = returnString + `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} ${ratingString(store.bookmarks[i].rating)}</li>`
+            if (store.bookmarks[i].rating <= ratingFilter){
+                returnString = returnString  + `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} ${ratingString(store.bookmarks[i].rating)}</li>`
+
+            } else if (ratingFilter === 0){
+                returnString = returnString  + `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} ${ratingString(store.bookmarks[i].rating)}</li>`
+
+            }
+        
     }
 };
     
