@@ -9,7 +9,7 @@ function getItems() {
 
 function createItem(title, url, desc, rating) {
     let newItem = {
-        name,
+        title,
         url,
         desc,
         rating 

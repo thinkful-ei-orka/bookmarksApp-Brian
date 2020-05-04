@@ -48,11 +48,7 @@ function addBookmarkView(){
         <label for="addNewBookmark">Add New Bookmark:</label>
         <input type="text" id='addNewBookmark' placeholder='Enter a valid URL'> <br>
         <span>Select a rating:</span><br>
-        <span><img src='./images/star1.jpg' class='star-group-choice' alt="star with a 1 inside">
-            <img src='./images/star2.jpg' class='star-group-choice' alt="star with a 2 inside">
-            <img src='./images/star3.jpg' class='star-group-choice' alt="star with a 3 inside">
-            <img src='./images/star4.jpg' class='star-group-choice' alt="star with a 4 inside">
-            <img src='./images/star5.jpg' class='star-group-choice' alt="star with a 5 inside"></span>
+        <span>${selectRating()}</span>
         <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
         <section class="buttons cancel-create centerThis">
             <button class='cancel btn centerThis'>Cancel </button>
@@ -66,11 +62,7 @@ function errorView(){
         <label for="addNewBookmark">Add New Bookmark:</label>
         <input type="text" id='addNewBookmark'> <br>
         <span>Select a rating:</span><br>
-        <span><img src='./images/star1.jpg' class='star-group-choice' alt="star with a 1 inside">
-            <img src='./images/star2.jpg' class='star-group-choice' alt="star with a 2 inside">
-            <img src='./images/star3.jpg' class='star-group-choice' alt="star with a 3 inside">
-            <img src='./images/star4.jpg' class='star-group-choice' alt="star with a 4 inside">
-            <img src='./images/star5.jpg' class='star-group-choice' alt="star with a 5 inside"></span>
+        
         <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
         <section class="buttons cancel-create centerThis">
             <button disabled class='cancel btn centerThis'>Cancel </button>
@@ -96,6 +88,16 @@ function ratingString(rating){
         case 5 :
             return '<span class="star-group"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span></li>'
     }
+}
+
+function selectRating(){
+    let selectRatingString = ''
+    for (let i=1; i<6; i++){
+        selectRatingString = selectRatingString + 
+        `<img src='./images/star${i}.jpg' class='star-rating-choice' alt="star with a ${i} inside" value="${i}">`;        
+    }
+
+    return selectRatingString;
 }
 
 function listString(){

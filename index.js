@@ -35,6 +35,7 @@ function main(){
     event.handleCreateClick ();
     event.handleErrorboxClick ();
     event.handleSecTitleClick();
+    event.handleSelectRatingClick();
     render (html.initialView());
        
 })}

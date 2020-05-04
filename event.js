@@ -59,6 +59,7 @@ function handleSecTitleClick () {
 function handleCancelClick () {
 // cancel click
 $('.js-bookmark-app').on('click', '.cancel', event => {
+    event.preventDefault();
     console.log('Cancel click');
 
 })
@@ -67,6 +68,8 @@ $('.js-bookmark-app').on('click', '.cancel', event => {
 function handleCreateClick () {
 // create click
 $('.js-bookmark-app').on('click', '.create', event => {
+    event.preventDefault();
+
     console.log('Create click');
 })
 };
@@ -78,6 +81,21 @@ $('.js-bookmark-app').on('click', '.error-section', event => {
 })
 };
 
+function handleSelectRatingClick(){
+
+    $('.js-bookmark-app').on('click', '.star-rating-choice', event => {
+        // get the index of the item in store.items
+        // const id = $(this).attr("value");
+        let id = ''
+        id = event.currentTarget;
+        // let newRating = id.slice(id.length - 1, 1);
+        console.log(id);
+        
+        
+    });
+}
+
+
 export default {
     handleNewBookmarkClick,
     handleFilterByClick,
@@ -85,5 +103,6 @@ export default {
     handleCancelClick,
     handleCreateClick,
     handleErrorboxClick,
-    handleSecTitleClick
+    handleSecTitleClick,
+    handleSelectRatingClick
 };

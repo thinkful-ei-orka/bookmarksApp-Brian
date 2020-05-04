@@ -19,7 +19,8 @@ const store = {
     ],
     adding: false,
     error: null,
-    filter: 0
+    filter: 0,
+    currentRating: 0
 };
 
 

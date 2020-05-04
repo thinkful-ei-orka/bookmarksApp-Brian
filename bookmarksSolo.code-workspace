@@ -4,7 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "..\\waitstaffCalcBrian-Virel"
+			"path": "..\\shopping-list-starter\\src"
+		},
+		{
+			"path": "..\\shopping-list-starter"
 		}
 	],
 	"settings": {
