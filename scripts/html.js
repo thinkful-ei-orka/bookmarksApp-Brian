@@ -32,7 +32,7 @@ function addBookmarkView(titleHold, descHold){
                     <input type="url" id='addNewBookmarkUrl' placeholder='Enter a valid URL' required> <br>
                 <span>Select a rating:</span><br>
                 <span>${selectRating()}</span>
-                <textarea name="bookmark-description"  required placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10">${store.descHold}</textarea>
+                <textarea name="bookmark-description"  required placeholder='Add a description' id="bookmark-description" cols="30" rows="10">${store.descHold}</textarea>
                 <section class="buttons cancel-create centerThis">
                     <button class='cancel btn centerThis'>Cancel </button>
                     <button type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>
@@ -108,7 +108,7 @@ function listString(){
                     <p>${store.bookmarks[i].desc}</p>
                 </section>`
         } else {
-            if (store.bookmarks[i].rating <= ratingFilter){
+            if (store.bookmarks[i].rating >= ratingFilter){
                 returnString = returnString  + 
                 `<li class="js-li" id=${store.bookmarks[i].id}>${store.bookmarks[i].title} 
                 ${ratingString(store.bookmarks[i].rating)}</li>`

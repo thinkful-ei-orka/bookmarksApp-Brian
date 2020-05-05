@@ -1,5 +1,10 @@
+link to app:  https://thinkful-ei-orka.github.io/bookmarksApp-Brian/
+
 /** Brian's Bookmark App
-/**git add
+
+Used to store and filter information about your bookmarks.
+
+/**
  * User Stories
  * I can add bookmarks to my bookmark list.
  * bookmarks contain:  Title, url link, description, rating(1-5)
