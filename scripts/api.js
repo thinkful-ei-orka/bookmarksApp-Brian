@@ -50,6 +50,7 @@ function getItems() {
     //return Promise.resolve('A successful response!');
 }
 
+// Create a new bookmark
 function createItem(title, url, desc, rating) {
     let newItem = {
         title,
@@ -65,27 +66,7 @@ function createItem(title, url, desc, rating) {
         },
         body: JSON.stringify(newItem)
     })
-    //.catch(error => console.log("Did it?"))
-    
-    
-    //html.errorView('Something went wrong. Try again later.')
-    
-
-    
 }
-
-// function updateItem(id, updateData){
-//     let stringData = JSON.stringify(updateData);
-//     return fetch(`${BASE_URL}items/${id}`, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: stringData
-//     })
-//     .catch(error => alert('Something went wrong. Try again later.')
-//     );
-// }
 
 function itemDelete(id) {
     return fetch(`${BASE_URL}/${id}`, {
@@ -98,6 +79,5 @@ function itemDelete(id) {
 export default {
 getItems,
 createItem,
-//updateItem,
 itemDelete
 };

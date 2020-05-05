@@ -8,22 +8,12 @@ const store = {
     descHold: ''
 };
 
-function addItem(item) {
-    this.bookmarks.push(item)
-};
-
-const findById = function (id) {
-    return this.bookmarks.find(currentItem => currentItem.id === id);
-};
-
 const setError = function (error) {
    this.error = error;
 };
 
 export default {
     ...store,
-    addItem,
-    findById,
     setError
 };
 

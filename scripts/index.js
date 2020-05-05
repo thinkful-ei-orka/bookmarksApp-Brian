@@ -40,13 +40,8 @@ function render(){
         $('main').html(html.errorView(store.error)) ;
     } else {
         $('main').html(html.initialView()) ;
-    }
-    
+    }   
 }
-
-
-  
-  
 
 function getAndRender(){
     api.getItems()
@@ -67,7 +62,6 @@ function getAndRender(){
 
 function main(){
     getAndRender();
-
     event.handleNewBookmarkClick ();
     event.handleFilterByClick ();
     event.handleLiClick ();
@@ -76,16 +70,10 @@ function main(){
     event.handleErrorboxClick ();
     event.handleSecTitleClick();
     event.handleSelectRatingClick();
-    event.handleDeleteClick();
-    
-       
+    event.handleDeleteClick();      
 };
 
-
 main();
-
-
-
 
 export default{
     getAndRender,
