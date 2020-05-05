@@ -14,7 +14,7 @@ function createItem(title, url, desc, rating) {
         desc,
         rating 
     };
-console.log(desc);
+
     return fetch((BASE_URL), {
         method: 'POST',
         headers: {
