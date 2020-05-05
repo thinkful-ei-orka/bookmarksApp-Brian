@@ -24,15 +24,15 @@ function initialView(){
     </section>`
  };
 
-function addBookmarkView(){
+function addBookmarkView(titleHold, descHold){
     return `<form action="submit" id='form-add-new-bookmark'>   
         <label for="addNewBookmarkTitle">Add a Title for your New Bookmark:</label>
-        <input type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required> <br>
+        <input type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required value=${store.titleHold} > <br>
         <label for="addNewBookmarkUrl">Add a URL for your New Bookmark:</label>
         <input type="url" id='addNewBookmarkUrl' placeholder='Enter a valid URL' required> <br>
         <span>Select a rating:</span><br>
         <span>${selectRating()}</span>
-        <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
+        <textarea name="bookmark-description" placeholder='Add a description (optional)' value=${store.descHold} id="bookmark-description" cols="30" rows="10"></textarea>
         <section class="buttons cancel-create centerThis">
             <button class='cancel btn centerThis'>Cancel </button>
             <button type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>

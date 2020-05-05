@@ -13,7 +13,12 @@ const getItemIdFromElement = function (item) {
 function handleNewBookmarkClick () {
 $('.js-bookmark-app').on('click', '.newBookmark', event => {
     //  console.log('new click');
-     index.render(html.addBookmarkView());
+    store.descHold = '';
+    store.titleHold = '';
+    store.adding = true;
+    // console.log(store.adding);
+     index.render();
+     store.adding = false;
 })
 
 };
@@ -25,7 +30,9 @@ $('.js-bookmark-app').on('change', '.filterBy', event => {
     let crntRating = $('#rating').val();
     store.filter = crntRating;
 
-    index.render(html.initialView());
+    store.error = false;
+    store.adding = false;
+    index.render ();
 
 })
 };
@@ -42,7 +49,9 @@ $('.js-bookmark-app').on('click', '.bookmarks li', event => {
     
         }
     }
-    index.render (html.initialView());
+    store.error = false;
+    store.adding = false;
+    index.render ();
 })
 };
 
@@ -57,7 +66,9 @@ function handleSecTitleClick () {
                 // console.log(store.bookmarks[i].expanded);
             }
         }
-        index.render (html.initialView());
+        store.error = false;
+        store.adding = false;
+        index.render ();
     })
     };
 
@@ -69,7 +80,9 @@ $('.js-bookmark-app').on('click', '.cancel', event => {
     $('#addNewBookmarkUrl').val('');
     $('#bookmark-description').val('');
     store.currentRating = 0;
-    index.render(html.initialView);
+    store.error = false;
+    store.adding = false;
+    index.render();
     // console.log('Cancel click');
 
 })
@@ -77,7 +90,7 @@ $('.js-bookmark-app').on('click', '.cancel', event => {
 
 function handleCreateClick () {
 // create click
-$('.js-bookmark-app').on('click', '.create', event => {
+$('.js-bookmark-app').on('submit', '#form-add-new-bookmark', event => {
     event.preventDefault();
     
     let crntTitle = $('#addNewBookmarkTitle').val();
@@ -88,24 +101,57 @@ $('.js-bookmark-app').on('click', '.create', event => {
 
     //Check the url 
     if (crntUrl.length < 6 && crntTitle.includes('http',4)) {
-        index.render (html.errorView('Not a valid URL'));
+        store.error = true;
+        store.adding = false;
+        store.errorMessage = 'Not a valid URL';
+        index.render ();
+        store.error = false;
+        
     };
         if (crntTitle === "" || crntUrl === ""){
-            index.render(html.errorView('Missing required information'));
+            store.error = true;
+            store.adding = false;
+            store.errorMessage = 'Missing required information';
+            index.render ();
+            store.error = false;
             
         } else {
             if (crntRating === 0){
                 // create and error
-                index.render (html.errorView('Must have a rating'));
+                store.error = true;
+                store.adding = false;
+                store.errorMessage = 'Must have a rating';
+                index.render ();
+                store.error = false;
+                
             } else {
                 // call the api
                 api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
                     .then(res => res.json())
+                    .then(response => {
+                        if(!response.ok) {
+                            store.titleHold = crntTitle;
+                            store.descHold = crntDesc;
+                            store.error = true;
+                            store.adding = false;
+                            store.errorMessage = response.message;
+                            index.render ();
+                            //store.error = false;
+                            
+                        } 
+                        
+                    })
+                    
                     .then(function (newItem) {
-                    store.bookmarks = [];
+                        if (store.error === false){
+                        store.bookmarks = [];
                     // store.addItem(newItem);
-                    index.getAndRender();
-                });
+                        index.getAndRender();
+                        } else {
+                            store.error === false
+                        };
+                    
+                    });
             };
         };
     
@@ -116,11 +162,16 @@ $('.js-bookmark-app').on('click', '.create', event => {
 
 function handleErrorboxClick () {
 // errorbox click
-$('.js-bookmark-app').on('click', '.error-section', event => {
-    // console.log('Error click');
-    index.render(html.addBookmarkView);
-})
-};
+    $('.js-bookmark-app').on('click', '.error-section', event => {
+        // console.log('Error click');
+        if (store.error === true) {
+            store.error = false
+            store.adding = true;
+            index.render();
+            store.adding = false;
+        }
+    }) 
+}
 
 function handleSelectRatingClick(){
 
@@ -136,14 +187,6 @@ function handleSelectRatingClick(){
     });
 }
 
-function clearSelectedClick (){
-    $('.js-bookmark-app').on('click', '.cancel', event => {
-                
-        // let crntRating = $(event.currentTarget).data("value");
-        // console.log('Delete')
-       
-    });
-}
 
 function handleDeleteClick(){
     $('.js-bookmark-app').on('click', '.img-trash', event => {
@@ -176,6 +219,5 @@ export default {
     handleErrorboxClick,
     handleSecTitleClick,
     handleSelectRatingClick,
-    clearSelectedClick,
     handleDeleteClick
 };

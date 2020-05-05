@@ -1,6 +1,14 @@
 /*
 Intial view settings
 */
+
+html {
+    background-color: rgb(107, 107, 248);
+}
+.star-rating-choice{
+    height: 68px;
+}
+
 .new-filter{
     display: flex;
 }
@@ -90,5 +98,6 @@ textarea{
 }
 
 .star-rating-choice-selected{
+    height: 66px;
     border: 1px solid black;
 }

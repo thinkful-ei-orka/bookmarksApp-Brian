@@ -32,9 +32,16 @@ import api from './api.js';
 import event from './event.js'
 
 
-function render(str){
+function render(){
+
+    if (store.adding === true) {
+        $('main').html(html.addBookmarkView()) ;
+    } else if (store.error === true) {
+        $('main').html(html.errorView(store.errorMessage)) ;
+    } else {
+        $('main').html(html.initialView()) ;
+    }
     
-    $('main').html(str)
 }
 
 
@@ -51,7 +58,9 @@ function getAndRender(){
                 let element = {id: items[i].id, title: items[i].title, url: items[i].url, desc: items[i].desc, rating: items[i].rating, expanded: false};
                 store.bookmarks.push(element);
             };
-            render (html.initialView());
+            store.adding = false;
+            store.error = false;
+            render ();
         });
     
 };
@@ -67,7 +76,6 @@ function main(){
     event.handleErrorboxClick ();
     event.handleSecTitleClick();
     event.handleSelectRatingClick();
-    event.clearSelectedClick();
     event.handleDeleteClick();
     
        

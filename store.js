@@ -1,9 +1,12 @@
 const store = {
     bookmarks: [],
     adding: false,
-    error: null,
+    error: false,
+    errorMessage: '',
     filter: 0,
-    currentRating: 0
+    currentRating: 0,
+    titleHold: '',
+    descHold: ''
 };
 
 function addItem(item) {
