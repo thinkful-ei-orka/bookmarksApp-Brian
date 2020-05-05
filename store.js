@@ -14,12 +14,16 @@ function addItem(item) {
 
 const findById = function (id) {
     return this.bookmarks.find(currentItem => currentItem.id === id);
-  };
+};
+
+const setError = function (error) {
+   this.error = error;
+};
 
 export default {
     ...store,
     addItem,
-    findById
-
+    findById,
+    setError
 };
 

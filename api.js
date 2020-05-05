@@ -58,14 +58,14 @@ function createItem(title, url, desc, rating) {
         rating 
     };
 
-    return fetch((BASE_URL), {
+    return listApiFetch((BASE_URL), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=utf-8'
         },
         body: JSON.stringify(newItem)
     })
-    .catch(error => index.render())
+    //.catch(error => console.log("Did it?"))
     
     
     //html.errorView('Something went wrong. Try again later.')

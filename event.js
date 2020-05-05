@@ -16,7 +16,7 @@ $('.js-bookmark-app').on('click', '.newBookmark', event => {
     store.descHold = '';
     store.titleHold = '';
     store.adding = true;
-    store.error = false;
+    store.error = null;
     // console.log(store.adding);
      index.render();
      store.adding = false;
@@ -31,7 +31,7 @@ $('.js-bookmark-app').on('change', '.filterBy', event => {
     let crntRating = $('#rating').val();
     store.filter = crntRating;
 
-    store.error = false;
+    store.error = null;
     store.adding = false;
     index.render ();
 
@@ -50,7 +50,7 @@ $('.js-bookmark-app').on('click', '.bookmarks li', event => {
     
         }
     }
-    store.error = false;
+    store.error = null;
     store.adding = false;
     index.render ();
 })
@@ -67,7 +67,7 @@ function handleSecTitleClick () {
                 // console.log(store.bookmarks[i].expanded);
             }
         }
-        store.error = false;
+        store.error = null;
         store.adding = false;
         index.render ();
     })
@@ -122,32 +122,33 @@ $('.js-bookmark-app').on('submit', '#form-add-new-bookmark', event => {
     
         if (crntRating === 0){
             // create and error
-            store.error = true;
+            store.error = 'Must have a rating';
             store.adding = false;
-            store.errorMessage = 'Must have a rating';
+            // store.error = 'Must have a rating';
             index.render ();
-            store.error = false;
+            // store.error = false;
                 
         } else {
             // call the api
             api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
-                .then(res => (res.json())                                
+                                             
                 .then(function (newItem) {
-                    console.log(store.error)
-                    if (store.error === false){
+                   
+                    if (!store.error){
                     store.bookmarks = [];
                 // store.addItem(newItem);
                     index.getAndRender();
                     } else {
-                        store.error === false
+                        store.error = null;
                     };
                 
                 })
                 .catch((error) => {
-                    console.log(error);
+                    store.descHold = crntDesc;
+                    store.titleHold = crntTitle;
                     store.setError(error.message);
-                    renderError();
-                }));
+                    index.render();
+                });
         };
     
 });
@@ -159,8 +160,8 @@ function handleErrorboxClick () {
 // errorbox click
     $('.js-bookmark-app').on('click', '.error-section', event => {
         // console.log('Error click');
-        if (store.error === true) {
-            store.error = false
+        if (store.error) {
+            store.error = null;
             store.adding = true;
             index.render();
             store.adding = false;

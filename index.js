@@ -36,8 +36,8 @@ function render(){
 
     if (store.adding === true) {
         $('main').html(html.addBookmarkView()) ;
-    } else if (store.error === true) {
-        $('main').html(html.errorView(store.errorMessage)) ;
+    } else if (store.error) {
+        $('main').html(html.errorView(store.error)) ;
     } else {
         $('main').html(html.initialView()) ;
     }
@@ -59,7 +59,7 @@ function getAndRender(){
                 store.bookmarks.push(element);
             };
             store.adding = false;
-            store.error = false;
+            store.error = null;
             render ();
         });
     

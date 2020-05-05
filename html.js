@@ -32,7 +32,7 @@ function addBookmarkView(titleHold, descHold){
         <input type="url" id='addNewBookmarkUrl' placeholder='Enter a valid URL' required> <br>
         <span>Select a rating:</span><br>
         <span>${selectRating()}</span>
-        <textarea name="bookmark-description" placeholder='Add a description (optional)' value=${store.descHold} id="bookmark-description" cols="30" rows="10"></textarea>
+        <textarea name="bookmark-description"  required placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10">${store.descHold}</textarea>
         <section class="buttons cancel-create centerThis">
             <button class='cancel btn centerThis'>Cancel </button>
             <button type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>
