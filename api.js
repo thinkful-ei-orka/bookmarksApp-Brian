@@ -14,8 +14,7 @@ function createItem(title, url, desc, rating) {
         desc,
         rating 
     };
-    console.log(rating);
-    console.log(typeof rating);
+console.log(desc);
     return fetch((BASE_URL), {
         method: 'POST',
         headers: {
@@ -23,8 +22,12 @@ function createItem(title, url, desc, rating) {
         },
         body: JSON.stringify(newItem)
     })
-    .catch(error => alert('Something went wrong. Try again later.')
+    .catch(error => index.render(html.errorView('Something went wrong. Try again later.'))
+    
     );
+    html.errorView('Something went wrong. Try again later.')
+    
+
     
 }
 

@@ -69,22 +69,24 @@ function addBookmarkView(){
     </form>`
 }
 
-function errorView(){
+function errorView(errorMessage){
     return `<form action="submit" id='form-add-new-bookmark'>   
-        <label for="addNewBookmark">Add New Bookmark:</label>
-        <input type="text" id='addNewBookmark'> <br>
-        <span>Select a rating:</span><br>
-        
-        <textarea name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
-        <section class="buttons cancel-create centerThis">
-            <button disabled class='cancel btn centerThis'>Cancel </button>
-            <button disabled type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>
-        </section> 
-        <br>
-        <section class="error-section">
-            <h2>Must have a rating</h2>
-        </section>
-    </form>`
+                <label for="addNewBookmarkTitle">Add a Title for your New Bookmark:</label>
+                    <input disabled type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required> <br>
+                <label for="addNewBookmarkUrl">Add a URL for your New Bookmark:</label>
+                    <input disabled type="url" id='addNewBookmarkUrl' placeholder='Enter a valid URL' required> <br>
+                <br>
+                <textarea disabled name="bookmark-description" placeholder='Add a description (optional)' id="bookmark-description" cols="30" rows="10"></textarea>
+                <section class="buttons cancel-create centerThis">
+                    <button disabled class='cancel btn centerThis'>Cancel </button>
+                    <button disabled type='submit' form='form-add-new-bookmark' value="Submit" class='create btn centerThis'>Create </button>
+                </section> 
+                <br>
+                <section class="error-section">
+                    <h2 class='err-message'>${errorMessage}</h2>
+                </section>
+                <p>Click above to close error</p>
+            </form>`
 }
 
 function ratingString(rating){
@@ -118,6 +120,7 @@ function listString(){
 
     for (let i = 0; i < store.bookmarks.length; i++){
         if (store.bookmarks[i].expanded === true) {
+            
             returnString = returnString + `<div class="expanded">
             <section class="sec-title">
                 <p>${store.bookmarks[i].title}</p>
@@ -128,7 +131,7 @@ function listString(){
             <img src='./images/star${store.bookmarks[i].rating}.jpg' class='star-group close-expanded' alt="star with a 3 inside">
         </section>
         <section class="description">
-            <p>${store.bookmarks[i].description}!</p>
+            <p>${store.bookmarks[i].desc}</p>
         </section>`
         } else {
             if (store.bookmarks[i].rating <= ratingFilter){

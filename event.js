@@ -65,7 +65,12 @@ function handleCancelClick () {
 // cancel click
 $('.js-bookmark-app').on('click', '.cancel', event => {
     event.preventDefault();
-    console.log('Cancel click');
+    $('#addNewBookmarkTitle').val('');
+    $('#addNewBookmarkUrl').val('');
+    $('#bookmark-description').val('');
+    store.currentRating = 0;
+    index.render(html.initialView);
+    // console.log('Cancel click');
 
 })
 };
@@ -78,29 +83,42 @@ $('.js-bookmark-app').on('click', '.create', event => {
     let crntTitle = $('#addNewBookmarkTitle').val();
     let crntUrl = $('#addNewBookmarkUrl').val();
     let crntDesc = $('#bookmark-description').val();
+    
     let crntRating = store.currentRating;
 
-    if (crntRating === 0){
-        // create and error
+    //Check the url 
+    if (crntUrl.length < 6 && crntTitle.includes('http',4)) {
+        index.render (html.errorView('Not a valid URL'));
+    };
+        if (crntTitle === "" || crntUrl === ""){
+            index.render(html.errorView('Missing required information'));
+            
+        } else {
+            if (crntRating === 0){
+                // create and error
+                index.render (html.errorView('Must have a rating'));
+            } else {
+                // call the api
+                api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
+                    .then(res => res.json())
+                    .then(function (newItem) {
+                    store.bookmarks = [];
+                    // store.addItem(newItem);
+                    index.getAndRender();
+                });
+            };
+        };
+    
+});
+};
 
-    } else {
-        // call the api
-        api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
-            .then(res => res.json())
-            .then(function (newItem) {
-            store.bookmarks = [];
-            // store.addItem(newItem);
-            index.getAndRender();
-        });
-      };
-    });
-}
 
 
 function handleErrorboxClick () {
 // errorbox click
 $('.js-bookmark-app').on('click', '.error-section', event => {
-    console.log('Error click');
+    // console.log('Error click');
+    index.render(html.addBookmarkView);
 })
 };
 
