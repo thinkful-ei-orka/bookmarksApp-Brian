@@ -16,6 +16,7 @@ $('.js-bookmark-app').on('click', '.newBookmark', event => {
     store.descHold = '';
     store.titleHold = '';
     store.adding = true;
+    store.error = false;
     // console.log(store.adding);
      index.render();
      store.adding = false;
@@ -88,6 +89,24 @@ $('.js-bookmark-app').on('click', '.cancel', event => {
 })
 };
 
+const generateError = function (message) {
+    return `
+        <section class="error-content">
+          <button id="cancel-error">X</button>
+          <p>${message}</p>
+        </section>
+      `;
+  };
+  
+  const renderError = function () {
+    if (store.error) {
+      const el = generateError(store.error);
+      $('.error-container').html(el);
+    } else {
+      $('.error-container').empty();
+    }
+  };
+
 function handleCreateClick () {
 // create click
 $('.js-bookmark-app').on('submit', '#form-add-new-bookmark', event => {
@@ -100,59 +119,35 @@ $('.js-bookmark-app').on('submit', '#form-add-new-bookmark', event => {
     let crntRating = store.currentRating;
 
     //Check the url 
-    if (crntUrl.length < 6 && crntTitle.includes('http',4)) {
-        store.error = true;
-        store.adding = false;
-        store.errorMessage = 'Not a valid URL';
-        index.render ();
-        store.error = false;
-        
-    };
-        if (crntTitle === "" || crntUrl === ""){
+    
+        if (crntRating === 0){
+            // create and error
             store.error = true;
             store.adding = false;
-            store.errorMessage = 'Missing required information';
+            store.errorMessage = 'Must have a rating';
             index.render ();
             store.error = false;
-            
-        } else {
-            if (crntRating === 0){
-                // create and error
-                store.error = true;
-                store.adding = false;
-                store.errorMessage = 'Must have a rating';
-                index.render ();
-                store.error = false;
                 
-            } else {
-                // call the api
-                api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
-                    .then(res => res.json())
-                    .then(response => {
-                        if(!response.ok) {
-                            store.titleHold = crntTitle;
-                            store.descHold = crntDesc;
-                            store.error = true;
-                            store.adding = false;
-                            store.errorMessage = response.message;
-                            index.render ();
-                            //store.error = false;
-                            
-                        } 
-                        
-                    })
-                    
-                    .then(function (newItem) {
-                        if (store.error === false){
-                        store.bookmarks = [];
-                    // store.addItem(newItem);
-                        index.getAndRender();
-                        } else {
-                            store.error === false
-                        };
-                    
-                    });
-            };
+        } else {
+            // call the api
+            api.createItem(crntTitle, crntUrl, crntDesc, crntRating)
+                .then(res => (res.json())                                
+                .then(function (newItem) {
+                    console.log(store.error)
+                    if (store.error === false){
+                    store.bookmarks = [];
+                // store.addItem(newItem);
+                    index.getAndRender();
+                    } else {
+                        store.error === false
+                    };
+                
+                })
+                .catch((error) => {
+                    console.log(error);
+                    store.setError(error.message);
+                    renderError();
+                }));
         };
     
 });

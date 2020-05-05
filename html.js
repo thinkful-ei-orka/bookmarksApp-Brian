@@ -25,7 +25,7 @@ function initialView(){
  };
 
 function addBookmarkView(titleHold, descHold){
-    return `<form action="submit" id='form-add-new-bookmark'>   
+    return `<form action="" id='form-add-new-bookmark'>   
         <label for="addNewBookmarkTitle">Add a Title for your New Bookmark:</label>
         <input type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required value=${store.titleHold} > <br>
         <label for="addNewBookmarkUrl">Add a URL for your New Bookmark:</label>
@@ -41,7 +41,7 @@ function addBookmarkView(titleHold, descHold){
 }
 
 function errorView(errorMessage){
-    return `<form action="submit" id='form-add-new-bookmark'>   
+    return `<form action="" id='form-add-new-bookmark'>   
                 <label for="addNewBookmarkTitle">Add a Title for your New Bookmark:</label>
                     <input disabled type="text" id='addNewBookmarkTitle' placeholder='Enter a Title' required> <br>
                 <label for="addNewBookmarkUrl">Add a URL for your New Bookmark:</label>

@@ -1,8 +1,7 @@
 const store = {
     bookmarks: [],
     adding: false,
-    error: false,
-    errorMessage: '',
+    error: null,
     filter: 0,
     currentRating: 0,
     titleHold: '',
