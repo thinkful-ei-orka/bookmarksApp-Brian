@@ -48,7 +48,7 @@ li{
     display: flex;
     
 }
-.star-group{
+.star-group{ 
     margin-left: auto;
 }
 /*
@@ -100,4 +100,9 @@ textarea{
 .star-rating-choice-selected{
     height: 66px;
     border: 1px solid black;
+}
+
+.visitSite {
+    width: 70%;
+    height: auto;
 }

@@ -24,7 +24,7 @@ function handleNewBookmarkClick () {
 
 function handleFilterByClick () {
 // filter click
-    $('.js-bookmark-app').on('change', '.filterBy', event => {
+    $('.js-bookmark-app').on('change', '#rating', event => {
         
         let crntRating = $('#rating').val();
         store.filter = crntRating;
